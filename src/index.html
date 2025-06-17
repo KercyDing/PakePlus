@@ -1,22 +1,125 @@
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <link rel="stylesheet" href="styles.css" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>PakePlus App</title>
-        <script type="module" src="/main.js" defer></script>
-    </head>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CS汰换计算器</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- 步骤指示器 -->
+        <div class="step-indicator">
+            <div class="step active" data-step="1">
+                <span class="step-number">1</span>
+                <span class="step-title">添加分类</span>
+            </div>
+            <div class="step" data-step="2">
+                <span class="step-number">2</span>
+                <span class="step-title">添加材料</span>
+            </div>
+            <div class="step" data-step="3">
+                <span class="step-number">3</span>
+                <span class="step-title">添加产物</span>
+            </div>
+            <div class="step" data-step="4">
+                <span class="step-number">4</span>
+                <span class="step-title">计算结果</span>
+            </div>
+        </div>
 
-    <body>
-        <main class="container">
-            <h1>Welcome to PakePlus</h1>
+        <!-- 主要内容区域 -->
+        <div class="main-content">
+            <!-- 步骤1: 添加材料分类 -->
+            <div id="step1" class="step-content active">
+                <div class="step-header">
+                    <h1>步骤1: 添加材料分类</h1>
+                    <p>请添加您想要分析的材料分类</p>
+                </div>
+                
+                <div class="input-section">
+                    <div class="add-category-form">
+                        <input type="text" id="categoryInput" placeholder="输入分类名称（如 千瓦、热潮、梦魇等）">
+                        <button class="btn btn-primary" onclick="addCategory()">添加分类</button>
+                    </div>
+                    
+                    <div class="categories-list" id="categoriesList">
+                        <!-- 分类列表将动态生成 -->
+                    </div>
+                </div>
+                
+                <div class="step-controls">
+                    <button class="btn btn-secondary" onclick="resetAll()">重置</button>
+                    <button class="btn btn-primary" onclick="goToStep(2)" id="nextStep1">下一步</button>
+                </div>
+            </div>
 
-            <form class="row" id="greet-form">
-                <input id="greet-input" placeholder="Enter a name..." />
-                <button type="submit">Greet</button>
-            </form>
-            <p id="greet-msg"></p>
-        </main>
-    </body>
+            <!-- 步骤2: 添加材料 -->
+            <div id="step2" class="step-content">
+                <div class="step-header">
+                    <h1>步骤2: 添加材料</h1>
+                    <p>为每个分类添加具体的材料</p>
+                </div>
+                
+                <div class="category-tabs" id="categoryTabs">
+                    <!-- 分类标签将动态生成 -->
+                </div>
+                
+                <div class="materials-section" id="materialsSection">
+                    <!-- 材料添加界面将动态生成 -->
+                </div>
+                
+                <div class="step-controls">
+                    <button class="btn btn-secondary" onclick="goToStep(1)">上一步</button>
+                    <button class="btn btn-secondary" onclick="resetAll()">重置</button>
+                    <button class="btn btn-primary" onclick="goToStep(3)" id="nextStep2">下一步</button>
+                </div>
+            </div>
+
+            <!-- 步骤3: 添加产物 -->
+            <div id="step3" class="step-content">
+                <div class="step-header">
+                    <h1>步骤3: 添加产物</h1>
+                    <p>为每个分类添加可能的进阶产物</p>
+                </div>
+                
+                <div class="category-tabs" id="productCategoryTabs">
+                    <!-- 分类标签将动态生成 -->
+                </div>
+                
+                <div class="products-section" id="productsSection">
+                    <!-- 产物添加界面将动态生成 -->
+                </div>
+                
+                <div class="step-controls">
+                    <button class="btn btn-secondary" onclick="goToStep(2)">上一步</button>
+                    <button class="btn btn-secondary" onclick="resetAll()">重置</button>
+                    <button class="btn btn-primary" onclick="goToStep(4)" id="nextStep3">下一步</button>
+                </div>
+            </div>
+
+            <!-- 步骤4: 计算结果 -->
+            <div id="step4" class="step-content">
+                <div class="step-header">
+                    <h1>步骤4: 计算结果</h1>
+                    <p>查看数学期望分析和最优分配建议</p>
+                </div>                <div class="calculation-section">
+                    <button class="btn btn-large btn-primary" onclick="calculateResults()">开始计算</button>
+                    
+                    <div class="results-display" id="resultsDisplay">
+                        <!-- 计算结果将在这里显示 -->
+                    </div>
+                </div>
+                
+                <div class="step-controls">
+                    <button class="btn btn-secondary" onclick="goToStep(3)">上一步</button>
+                    <button class="btn btn-secondary" onclick="resetAll()">重置</button>
+                    <button class="btn btn-primary" onclick="goToStep(1)">重新开始</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
 </html>
